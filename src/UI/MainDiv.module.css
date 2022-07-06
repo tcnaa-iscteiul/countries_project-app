@@ -1,0 +1,7 @@
+.MainDiv {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/63/Mapa_Mundi_Detalle_Max_2008.png");
+    background-repeat: no-repeat;
+    height: 1000px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    display:block;
+}

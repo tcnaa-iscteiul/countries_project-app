@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import './App.css';
+import Region from './components/Region';
+import Favorits from './components/Favorits';
+import { addCountry, removeCountry } from "./store/actionCreators";
+import { Dispatch } from "redux";
+import MainDiv from './UI/MainDiv';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: React.FC = (): JSX.Element => {
+    const countries: ICountry[] = useSelector(
+        (state: CountryState) => state.countries,
+        shallowEqual
+    )
+    const dispatch: Dispatch<any> = useDispatch()
+
+    const saveCountry = 
+        React.useCallback(
+            (country: ICountry) => dispatch(addCountry(country)),
+            [dispatch]
+        );
+
+    const deleteCountry =
+        React.useCallback(
+            (country: ICountry) => dispatch(removeCountry(country)),
+            [dispatch]
+        );
+
+    /*
+    return (
+        <main>
+            <MainDiv>
+                <Region saveCountry={saveCountry} deleteCountry={deleteCountry} />
+                <Favorits saveCountry={saveCountry} deleteCountry={deleteCountry} items={countries} />
+            </MainDiv>
+        </main>
+    );*/
+    return (
+        <main>
+            <MainDiv>
+                <Region saveCountry={saveCountry}  />
+                <Favorits saveCountry={deleteCountry} deleteCountry={deleteCountry} items={countries} />
+            </MainDiv>
+        </main>
+    );
+
 }
 
 export default App;
