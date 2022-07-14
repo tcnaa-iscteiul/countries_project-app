@@ -1,32 +1,28 @@
+import { Dispatch, Fragment } from 'react';
 import classes from './Dropdown.module.css';
-import React, { useState } from 'react';
-const Dropdown = (props: any): JSX.Element => {
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { countriesActions } from '../store/countries-slice';
 
-    const [selected, setSelected] = useState('DEFAULT');
+const Dropdown = (props: { items: IRegion[] }): JSX.Element => {
 
-    const dropdownChangedHandler = (e: any) => {
-        if (e.target.value !== 'DEFAULT') {
-            setSelected(e.target.value);
-        }
+    const dispatch = useDispatch();
+
+    const region: string = useSelector((state: CountryState) => state.selectCountry.componentRegion);
+    const addSelected: Dispatch<string> =
+        (component: string) => dispatch(countriesActions.addSelectedCountry({ componentRegion: component }));
+
+    const dropdownChangedHandler = (e: any): void => {
+        e.preventDefault();
+        (e.target.value === 'DEFAULT') ? addSelected('') : addSelected(e.target.value);
     };
 
-    return <React.Fragment>
-        <select className={classes.input} name="regions" id="regions" onChange={dropdownChangedHandler} value={selected}>
+    return <Fragment>
+        <select className={classes.input} name="regions" id="regions" onChange={dropdownChangedHandler} value={region}>
             <option value='DEFAULT'>Select an region</option>
-        {props.items.map((region: ICountry) => <option className={classes.input} key={region.id} value={region.name}>{region.name}</option>)}
+            {props.items.map((region: IRegion) => <option className={classes.input} key={region.id} value={region.name}>{region.name}</option>)}
         </select>
-        <button className={classes.button}
-            onClick={() => {
-                if (selected !== 'DEFAULT') {
-                    props.selectRegion(selected)
-                    setSelected('DEFAULT');
-                }
-                else {
-                    setSelected('DEFAULT')
-                    props.selectRegion('');
-                }
-            }}>SEARCH</button>
-        </React.Fragment>;
+    </Fragment>;
 };
 
 export default Dropdown;

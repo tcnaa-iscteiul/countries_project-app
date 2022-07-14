@@ -1,40 +1,42 @@
 import useHttp from '../hooks/use-http';
 import React, { useState, useEffect } from 'react';
 import Card from '../UI/Card';
-import ListCountries from './ListCountries';
+import Country from './Country';
 import Dropdown from '../UI/Dropdown';
 import SearchField from './SearchField';
+import { useSelector } from 'react-redux';
 
 const REGIONS: IRegion[] = [
     {
-        id: 'id1',
+        id: 1,
         name: 'Africa'
     }, {
-        id: 'id2',
+        id: 2,
         name: 'Americas'
     }, {
-        id: 'id3',
+        id: 3,
         name: 'Asia'
     }, {
-        id: 'id4',
+        id: 4,
         name: 'Europe'
     }, {
-        id: 'id5',
+        id: 5,
         name: 'Oceania'
     }];
 
-type RegionProps = {
-    saveCountry: (item: ICountry) => void
-}
-const Region = (props: RegionProps): JSX.Element => {
-    const [region, setRegion] = useState<string>('');
+const Region = (): JSX.Element => {
+
     const [countries, setCountries] = useState<ICountry[]>([]);
-    const [searchCountry, setSearchCountry] = useState<ICountry[]>([]);
-    const {isLoading, error, sendRequest: fetchCountries } = useHttp();
-    const [enteredCountry, setEnteredCountry] = useState<string>();
-    const show = region || searchCountry.length > 0 || (enteredCountry && searchCountry.length===0);
-    
-    const url = 'https://restcountries.com/v3.1/all';
+    const { enteredCountry, componentRegion:region, componentFavorits:favorits } = useSelector((state: CountryState) => state.selectCountry);
+    const { isLoading, error, sendRequest: fetchCountries } = useHttp();
+
+    //Filters countries according to the chosen region and entered text
+    const searchCountry: ICountry[] =
+        (region && enteredCountry && countries.filter((item: ICountry) => item.region === region && item.name.toLowerCase().startsWith(enteredCountry.toLowerCase()))) ||
+        (enteredCountry&&countries.filter((item: ICountry) => item.name.toLowerCase().startsWith(enteredCountry.toLowerCase()))) ||
+        (region&&countries.filter((item: ICountry) => item.region === region)) || [];
+    //fetching data from the api
+    const url:string = 'https://restcountries.com/v3.1/all';
     useEffect(() => {
 
         const transformCountries = (countryTask: any) => {
@@ -42,7 +44,7 @@ const Region = (props: RegionProps): JSX.Element => {
 
             for (const taskKey in countryTask) {
                 loadedCountries.push({
-                    id: taskKey,
+                    id: +taskKey,
                     name: countryTask[taskKey].name.common,
                     area: countryTask[taskKey].area,
                     capital: countryTask[taskKey].capital,
@@ -56,46 +58,23 @@ const Region = (props: RegionProps): JSX.Element => {
         fetchCountries({ url: url }, transformCountries);
     }, [fetchCountries]);
 
-    
-    const searchingCountry = (items: ICountry[], country: string): void => {
-        setRegion('');
-        setSearchCountry(items);
-        setEnteredCountry(country);
-    };
-
-    const selectedOption = (region: string): void => {
-        setRegion(region);
-    };
-
-    const removeItem = (country: ICountry): void => {
-        const newSearch = countries?.filter((item: ICountry) => item !== country);
-        setSearchCountry(newSearch);
-        setEnteredCountry('');
-    }
-
     const title: string = "QUICK FIND AN CITY";
-
     return <React.Fragment>
-        <div style={{ "position": "absolute", "top": "5%", "left": "20%" }}><h1 >{title}</h1></div>
+        <div style={{ "position": "absolute", "top": "5%", "left": "10%" }}><h1 >{title}</h1></div>
         <Card>
-            <Dropdown selectRegion={selectedOption} items={REGIONS} />
-            <SearchField
-                items={countries}
-                saveCountry={props.saveCountry}
-                deleteCountry={() => setEnteredCountry('')}
-                searching={searchingCountry}
-                style={{ "width": "25%" }}></SearchField>
+            <Dropdown items={REGIONS} />
+            <SearchField id={region} style={{ "width": "50%" }}></SearchField>
         </Card>
-        {show && <Card style={{ "top": "25%", "backgroundColor": "transparent", "color": "black" }} >
-            <ListCountries
-                loading={isLoading}
-                error={error}
-                saveCountry={props.saveCountry}
-                deleteCountry={() => { }}
-                selectedRegion={region || ''}
-                items={region !== '' ? countries : searchCountry}
-                removeItem={removeItem}
-            /></Card>}
-        </React.Fragment>;
+        {(!region && !enteredCountry) || favorits ||
+            < Card style={{ "top": "25%", "backgroundColor": "transparent", "color": "black" }} >
+                <Country
+                    id={'REGION'}
+                    loading={isLoading}
+                    error={error}
+                    items={searchCountry}
+                />
+            </Card>}
+    </React.Fragment>;
+
 };
 export default Region;

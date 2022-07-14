@@ -1,7 +1,7 @@
 declare module '*.svg';
 
 interface ICountry {
-    id: string,
+    id: number,
     name: string,
     area: number,
     capital: string,
@@ -11,16 +11,12 @@ interface ICountry {
 }
 
 type CountryState = {
-    countries: ICountry[]
-}
-
-type CountryAction = {
-    type: string,
-    country: ICountry
+    countries: ICountry[],
+    selectCountry: { enteredCountry: string, componentRegion: string, componentFavorits: boolean }
 }
 
 type IRegion = {
-    id: string,
+    id: number,
     name: string
 }
 

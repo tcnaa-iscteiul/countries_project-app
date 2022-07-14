@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\components",
-    "\\src\\UI"
+    "\\src\\store"
   ],
+  "SelectedNode": "\\src\\store\\countries-slice.ts",
   "PreviewInSolutionExplorer": false
 }

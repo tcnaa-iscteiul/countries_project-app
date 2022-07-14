@@ -2,19 +2,10 @@
     width: 70%;
     height: 40px;
     background-color: white;
-    text-align:center;
-    border:none;
-    border-bottom:solid;
-    font-size:18px;
-    margin:0;
-}
-.button {
-    width: 25%;
-    height: 40px;
-    background-color: cornflowerblue;
     text-align: center;
-    font-size: 12px;
-    margin:0;
-    overflow:hidden;
+    border: none;
+    border-bottom: solid;
+    font-size: 18px;
+    margin: 0;
+    border-radius: 0px 20px 20px 0px;
 }
-

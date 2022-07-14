@@ -1,18 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { createStore, applyMiddleware, Store } from "redux"
-import { Provider } from "react-redux"
-import thunk from "redux-thunk"
-
+import { Provider } from "react-redux";
+import store from './store/index';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import reducer from "./store/reducer"
-
-const store: Store<CountryState, CountryAction> & {
-    dispatch: DispatchType
-} = createStore(reducer, applyMiddleware(thunk))
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
