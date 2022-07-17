@@ -1,0 +1,20 @@
+.CardItem {
+    background-color: #00C6CF;
+    display: innline-block;
+    font-weight: bold;
+    color: black;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    border-color: azure;
+    overflow: hidden;
+    text-align: center;
+    height: 50px;
+    width: 150px;
+}
+
+    .CardItem:hover {
+        background-color: #00848B;
+        font-size: 15px;
+        width:160px;
+        height:55px;
+    }

@@ -2,7 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
     "\\src\\store"
   ],
   "SelectedNode": "\\src\\store\\countries-slice.ts",

@@ -1,21 +1,23 @@
 .CardItem {
-    background-color: azure;
-    padding: 1%;
-    width: 70px;
+    background-color: transparent;
     display: innline-block;
     color: black;
     border-radius: 50px;
     margin-bottom: 10px;
-    border-color: azure;
     overflow: hidden;
-    text-align: center;
-    margin: 2%;
     height: 150px;
-    width: 150px;
+    width: 45%;
+    text-align: center;
+    margin-left: -3%;
+    margin-right: 8%;
+    border-color: black;
+    border-width: 3px;
+    font-size: 18px;
+    font-family: 'David CLM BoldItalic';
+    vertical-align:central;
 }
+
     .CardItem:hover {
-        background-color: lightblue;
-        font-size: 15px;
-        height: 150px;
-        width: 150px;
+        background-color: #00C6CF;
     }
+
