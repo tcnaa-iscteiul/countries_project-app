@@ -11,6 +11,8 @@ const Favorits = (): JSX.Element => {
     const [enteredValue, setEnteredValue] = useState<string>("");
     const { countries } = useSelector((state: CountryState) => state);
 
+    console.log(countries);
+
     //FIlters the countries according to the entered text
     const selectedCountry: ICountry[] = countries.filter(
         (item: ICountry) =>

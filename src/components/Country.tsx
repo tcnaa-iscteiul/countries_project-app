@@ -39,7 +39,6 @@ const Country = (props: CountryProps): JSX.Element => {
             </ul >
         );
     }
-    console.log(content);
     if (props.error) {
         content = 'Request failed!';
     }

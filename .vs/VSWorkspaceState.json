@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
-    "\\src\\store"
+    "\\src\\components",
+    "\\src\\hooks",
+    "\\src\\store",
+    "\\src\\UI"
   ],
-  "SelectedNode": "\\src\\store\\countries-slice.ts",
+  "SelectedNode": "\\public\\manifest.json",
   "PreviewInSolutionExplorer": false
 }
