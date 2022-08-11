@@ -45,11 +45,15 @@ const Country = (props: CountryProps): JSX.Element => {
         );
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     let content = countriesList;
 
 =======
 >>>>>>> 73e98ce (Update Country.tsx)
+=======
+    console.log(content);
+>>>>>>> parent of 4c3e693 (final_version)
     if (props.error) {
         content = 'Request failed!';
     }

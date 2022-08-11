@@ -1,10 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\public",
     "\\src\\hooks",
     "\\src\\store",
     "\\src\\UI"
   ],
+=======
+    "\\src",
+    "\\src\\store"
+  ],
+  "SelectedNode": "\\src\\store\\countries-slice.ts",
+>>>>>>> parent of 4c3e693 (final_version)
   "PreviewInSolutionExplorer": false
 }

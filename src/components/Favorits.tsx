@@ -7,12 +7,21 @@ const Favorits = (props: any): JSX.Element => {
     const [searchCountry, setSearchCountry] = useState<ICountry[]>([]);
     const [enteredCountry, setEnteredCountry] = useState<string>('');
 
+<<<<<<< HEAD
 
     const removeItem = (country: ICountry): void => {
         const newSearch = props.items?.filter((item: ICountry) => item !== country);
         setSearchCountry(newSearch);
         setEnteredCountry('');
     }
+=======
+    //FIlters the countries according to the entered text
+    const selectedCountry: ICountry[] = countries.filter(
+        (item: ICountry) =>
+            enteredValue === "" ||
+            item.name.toLowerCase().startsWith(enteredValue.toLowerCase())
+    );
+>>>>>>> parent of 4c3e693 (final_version)
 
     const searchingCountry = (items: ICountry[], country: string) => {
         setSearchCountry(items);
