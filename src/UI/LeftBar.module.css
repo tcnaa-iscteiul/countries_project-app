@@ -1,0 +1,14 @@
+.left {
+    float: right;
+    margin-right: 1%;
+    margin-top: 3%;
+    border-color:black;
+    border:1px solid;
+    width: 23%;
+    height: auto;
+    background-color:transparent;
+    color:black;
+    text-align:center;
+    margin-bottom:2%;
+    padding:1%;
+}

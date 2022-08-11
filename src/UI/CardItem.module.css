@@ -1,0 +1,21 @@
+.CardItem {
+    background-color: azure;
+    padding: 1%;
+    width: 70px;
+    display: innline-block;
+    color: black;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    border-color: azure;
+    overflow: hidden;
+    text-align: center;
+    margin: 2%;
+    height: 150px;
+    width: 150px;
+}
+    .CardItem:hover {
+        background-color: lightblue;
+        font-size: 15px;
+        height: 150px;
+        width: 150px;
+    }

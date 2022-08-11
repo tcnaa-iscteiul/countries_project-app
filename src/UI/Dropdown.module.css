@@ -1,0 +1,23 @@
+
+.input {
+    width: 30%;
+    height: 40px;
+    background-color: white;
+    text-align: center;
+    border: none;
+    border-bottom: solid;
+    font-size: 18px;
+    margin: 0;
+    float:left;
+}
+
+.button {
+    width: 15%;
+    height: 40px;
+    background-color: cornflowerblue;
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+    overflow: hidden;
+    margin-right:2%;
+}
